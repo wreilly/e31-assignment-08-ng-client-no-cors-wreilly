@@ -60,6 +60,9 @@ export class AppComponent {
     // const book_id: string = inputElementRefPassedIn.value;
 
     let book_id = '';
+
+    // If user just clicks Submit (no entry to input box),
+      // we'll run default book 1528 (Red Badge of Courage)
     inputElementRefPassedIn.value ? book_id = inputElementRefPassedIn.value : book_id = '1528';
 
 
@@ -107,8 +110,7 @@ export class AppComponent {
 See // https://juristr.com/blog/2016/09/ng2-get-window-ref/
               return new window.DOMParser() // << No.
 */
-              return new that._myWindowRefService.myNativeWindowGetter.DOMParser()
-                .parseFromString(xmlStr, 'text/xml');
+              return new that._myWindowRefService.myNativeWindowGetter.DOMParser().parseFromString(xmlStr, 'text/xml');
           }
 /* COMPLAINED about '.myDataProperty'
 "src/app/app.component.ts(95,59): error TS2339: Property 'myDataProperty' does not exist on type 'Object'"
@@ -129,7 +131,10 @@ See // https://juristr.com/blog/2016/09/ng2-get-window-ref/
            */
 
            /* **** JAVASCRIPT to PARSE XML to OBJECT
+
 https://andrew.stwrt.ca/posts/js-xml-parsing/
+Has dependency on lodash. (I did npm install lodash...)
+(initially tried using CDN; dropped that)
 https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js
 --------------------------------------
 parse.js --> parse.ts
@@ -143,26 +148,24 @@ parse.js --> parse.ts
 
 /* Some Hard-Coded Values (for Testing)
 re: CharacterNames
-- Because the LibraryThing entry records for books will vary (a lot),
--- I cannot place one "blanket" object "dot location"
+- Because the LibraryThing entry records for books will vary (a great deal),
+-- I cannot place one "blanket" object "dot location" path-like thing
 --- to obtain this "List of Character Names" from all searches...
-- So, I simply hard-coded two examples
-- And made provision for default, and empty search box
-
-
+- So, I simply hard-coded two examples (I manually discovered the exact object location for each)
+- And made provision for default, as well as for empty search box
 */
           switch (book_id) {
-            case '1528': // Red Badge of Courage
+            case '1528': // The Red Badge of Courage
               this.myCharacterNames = myParsedGroovyXmlDocument.ltml.item.commonknowledge[9].versionList.factList;
               getCommonFour(this);
               break;
 
-            case '1527': // Picture of Dorian Gray
+            case '1527': // The Picture of Dorian Gray
               this.myCharacterNames = myParsedGroovyXmlDocument.ltml.item.commonknowledge[13].versionList.factList;
               getCommonFour(this);
               break;
 
-            case '':
+              case '': // Red Badge, if they just click Submit
               this.myCharacterNames = myParsedGroovyXmlDocument.ltml.item.commonknowledge[9].versionList.factList;
               break;
 

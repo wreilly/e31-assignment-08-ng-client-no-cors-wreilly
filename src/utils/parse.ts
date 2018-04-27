@@ -1,7 +1,9 @@
 /**
  * COPIED FROM
  * https://andrew.stwrt.ca/posts/js-xml-parsing/   parse.js
- * Dependency on Lodash. Loaded from CDN. (See /index.html <head><script...> )
+ * Dependency on Lodash.
+ * npm install lodash ...
+ * (Was initially loaded from CDN. (See /index.html <head><script...> )
  */
 
 /*
