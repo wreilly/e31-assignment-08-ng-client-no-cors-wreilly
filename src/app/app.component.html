@@ -3,12 +3,14 @@
     {{ title }}
   </h2>
 </div>
+<div class="row">
+  
   <h3>FakeAPI</h3>
   <p>Get 100 FakeAPI "Lorem Ipsum" Entries</p>
   <div style="font-size: x-small;">1. HTTP REQ: https://jsonplaceholder.typicode.com/posts</div>
-<ul>
-  <li>No issue re: CORS, no need for Proxy Server.</li>
-  <li>Does use the LibraryThingService, for HTTP request.</li>
+  <ul>
+    <li>No issue re: CORS, no need for Proxy Server.</li>
+  <li>Does use my own "LibraryThingService", for HTTP request, direct to FakeAPI.com.</li>
 </ul>
   <button type="submit" (click)="getFakeAPI($event)">Display FakeAPI Entries</button>
   <br />
@@ -20,38 +22,48 @@
     {{ fapi.title }}
   </li>
 </ol>
+</div>
+<div class="row">
+  <div class="column left">
+    <h3>LibraryThing - Web Services API</h3>
+  </div>
+  <div class="column right" style="align-content: center">
+    <a href="http://www.librarything.com/" target="_blank"><img src="https://www.librarything.com/pics/piles/downpile/18.jpg" style="max-height: 100px" alt=""></a>
+    <img src="http://pics.cdn.librarything.com/picsizes/24/bd/24bd271ed51344f5979696a5551434f414f4141.jpg"  style="max-height: 100px" alt="">
+</div>
+  <div class="row">
 
-  <h3>LibraryThing - Web Services API</h3>
-  <div style="font-size: x-small;">1. PROXY: http://0.0.0.0:3000/myspecialproxy/:book_id</div>
+      <div style="font-size: x-small;">1. PROXY: http://0.0.0.0:3000/myspecialproxy/:book_id</div>
 
-<!-- Use "{{ '{' }}") to escape it. -->
-  <div style="font-size: x-small;">2. HTTP REQ: http://www.librarything.com/services/rest/1.1/?method=librarything.ck.getwork&id=${{'{'}}book_id_passed{{'}'}}&apikey=59211e...</div>
-<ul>
-  <li>Has the "No CORS Allowed" issue, and so does use Proxy Server.</li>
-  <li>Uses the LibraryThingService, for HTTP request.</li>
-</ul>
-<br />
-  <div style="background-color: lightblue; padding: 8px;">
-      <label for="bookId_id">LibraryThing Book ID # : </label>
-      <input type="text" ref-bookId id="bookId_id" name="bookId_name" placeholder="e.g. 1528" />
+      <!-- Use "{{ '{' }}") to escape it. -->
+      <div style="font-size: x-small;">2. HTTP REQ: http://www.librarything.com/services/rest/1.1/?method=librarything.ck.getwork&id=${{'{'}}book_id_passed{{'}'}}&apikey=59211e...</div>
+      <ul>
+        <li>Has the "No CORS Allowed" issue, and so does use Proxy Server.</li>
+        <li>Uses my "LibraryThingService", for HTTP request to the Proxy Server (hence to LibraryThing).</li>
+      </ul>
+      <br />
+      <div  style="background-color: lightblue; padding: 8px;">
+        <label for="bookId_id">LibraryThing Book ID # : </label>
+        <input type="text" ref-bookId id="bookId_id" name="bookId_name" placeholder="e.g. 1528" />
         <br />
         <button type="submit" on-click="getLtWsApi(bookId)">Indicate Book ID# to Retrieve</button>
-      <ul>
-        <li>1528 = The Red Badge of Courage</li>
-        <li>1527 = The Picture of Dorian Gray</li>
-        <li>1526 = The Odyssey</li>
-        <li>1525 = The Name of the Rose</li>
+        <ul>
+          <li>1528 = The Red Badge of Courage</li>
+          <li>1527 = The Picture of Dorian Gray</li>
+          <li>1526 = The Odyssey</li>
+          <li>1525 = The Name of the Rose</li>
         </ul>
-    </div>
-    <ul>
-    <li>Author: {{ myAuthor }}</li>
-    <li>Title: {{ myTitle }}</li>
-    <li>Rating: {{ myRating }}</li>
-    <li>LibraryThing URL: <a href="{{myLtUrl}}">{{ myLtUrl }}</a></li>
-    </ul>
- <!--   <h5 *ngIf="{{ myCharacterNames }}">Character Names</h5> -->
+      </div>
+      <ul>
+        <li>Author: {{ myAuthor }}</li>
+        <li>Title: {{ myTitle }}</li>
+        <li>Rating: {{ myRating }}</li>
+        <li>LibraryThing URL: <a href="{{myLtUrl}}" target="_blank">{{ myLtUrl }}</a></li>
+      </ul>
+      <!--   <h5 *ngIf="{{ myCharacterNames }}">Character Names</h5> -->
       <ol>
         <li *ngFor="let cName of myCharacterNames">{{ cName }}</li>
-        </ol>
+      </ol>
 
 
+</div>
