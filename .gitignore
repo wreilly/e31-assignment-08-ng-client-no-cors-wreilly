@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# compiled output
-/dist
+# compiled output - For CSCI-E31 Assignment 8 (And 7) need to NOT exclude /dist
+# /dist
 /dist-server
 /tmp
 /out-tsc
