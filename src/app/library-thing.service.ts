@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// No need to specify which environment file (e.g. "prod")
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class LibraryThingService {
 /*
@@ -52,6 +55,8 @@ SAMPLE URL:
 
  */
 
+    apiUrlStubInService = environment.apiUrlStubInEnvironment;
+
     constructor(private _myHttpService: HttpClient) {  }
 
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
@@ -90,7 +95,10 @@ getLibraryThingMyBooks(user_id)
   getLibraryThingCK(book_id) {
       // "CK" = Common Knowledge, a LibraryThing.com feature.
     console.log('here we are in LT SERVICE & Etc. book_id is ', book_id);
-    return this._myHttpService.get(`http://0.0.0.0:3000/myspecialproxy/${book_id}`);
+      return this._myHttpService.get(`${this.apiUrlStubInService}myspecialproxy/${book_id}`);
+/* WORKS !
+      return this._myHttpService.get(`http://0.0.0.0:3000/myspecialproxy/${book_id}`);
+*/
 
       /* E.g., Proxy Server in turn sends to:
        http://www.librarything.com/services/rest/1.1/?method=librarything.ck.getwork&id=1060&apikey=59211e...
