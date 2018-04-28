@@ -1,23 +1,35 @@
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
-    <a href="https://www.librarything.com/services/rest/documentation/1.1/" target="_blank">LibraryThing's API Documentation</a> | <a
+<div class="row" style="background-color: cornflowerblue">
+    <div class="column left">
+        <div style="text-align:center">
+            <h1>
+                {{ title }}
+            </h1>
+        </div>
+    </div>
+    <div class="column right">
+        <img src="https://www.librarything.com/pics/piles/downpile/18.jpg" style="max-height: 100px" alt="">
+    </div>
+</div>
+    <div class="row">
+    <div style="text-align:center">
+        <a href="https://www.librarything.com/services/rest/documentation/1.1/" target="_blank">LibraryThing's API Documentation</a> | <a
         href="https://www.librarything.com/services/rest/1.1/?method=librarything.ck.getwork&id=1060&apikey=d231aa37c9b4f5d304a60a3d0ad1dad4" target="_blank">LibraryThing's Sample XML Response</a>
 </div>
-<div>
+
     <hr />
     <div><a href="https://canvas.harvard.edu/courses/35096" target="_blank">CSCI-E31</a> Assignment 8 (Graduate Credit Extra Work)</div>
 </div>
     <h2>Angular Client and Express Proxy Server</h2>
-    <div>Used to reach LibraryThing.com Web Service with <strong>No</strong> CORS Allowed:</div>
+<div>Used to reach LibraryThing.com Web Service that has <strong><span style="font-size: large;">No <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">CORS</a> Allowed</span></strong>:</div>
+
+<h4>Response Processing:</h4>
     <ul>
-        <li>1). Service returns XML as String (to Proxy Server).</li>
+        <li>1). LibraryThing Web Services API returns XML as String (to my Proxy Server).</li>
         <li>2). Proxy Server returns XML String to Angular Client, which uses Browser's window.DOMParser to create XML Document from String;</li>
         <ul>
             <li>Inject 'window' as Angular Service, to access DOMParser</li>
         </ul>
-        <li>3). Angular Client integrates with 3rd party JavaScript: 'parse.js' (which in turn has dependency on Lodash), to create JavaScript object from XML Document, parts of which are displayed to Client app webpage.</li>
+        <li>3). Angular Client integrates with 3rd party JavaScript: 'parse.js' (which in turn has dependency on Lodash), to create JavaScript object from XML Document, parts of which finally are displayed to Client app webpage. Done.</li>
         <ul>
             <li>parse.js: 2 steps: 1) Convert to parse.ts.; 2) export functions for import into Angular components</li>
             <li>Lodash: 3 steps: 1) npm install lodash; 2) npm install @types/lodash; 3) import * as _ from 'lodash'</li>
@@ -32,8 +44,8 @@
   <h4>Get 100 FakeAPI "Lorem Ipsum" Entries</h4>
   <div style="font-size: x-small;">1. HTTP REQ: https://jsonplaceholder.typicode.com/posts</div>
   <ul>
-    <li>No problem re: CORS, no need for Proxy Server.</li>
-  <li>Does use my own "LibraryThingService", for HTTP request, direct to FakeAPI.com.</li>
+    <li>This API <em>does</em> allow CORS; there is no need for a Proxy Server.</li>
+    <li>(Note: In the Angular Client app, I for convenience did put the HTTP request direct to FakeAPI.com inside of my "LibraryThingService".)</li>
 </ul>
   <button type="submit" (click)="getFakeAPI($event)">Display FakeAPI Entries</button>
   <br />
@@ -46,14 +58,17 @@
   </li>
 </ol>
 </div>
-<div class="row">
-  <div class="column left">
-    <h3>1. LibraryThing - Web Services API</h3>
-  </div>
-  <div class="column right" style="align-content: center">
-    <a href="http://www.librarything.com/" target="_blank"><img src="https://www.librarything.com/pics/piles/downpile/18.jpg" style="max-height: 100px" alt=""></a>
-    <img src="http://pics.cdn.librarything.com/picsizes/24/bd/24bd271ed51344f5979696a5551434f414f4141.jpg"  style="max-height: 100px" alt="">
-</div>
+<div class="row" style="background-color: yellowgreen">
+        <div class="column left">
+            <h3>1. LibraryThing - Web Services API</h3>
+        </div>
+        <div class="column right" style="align-content: center">
+            <!--
+                <a href="http://www.librarything.com/" target="_blank"><img src="https://www.librarything.com/pics/piles/downpile/18.jpg" style="max-height: 100px" alt=""></a>
+            -->
+            <img src="http://pics.cdn.librarything.com/picsizes/24/bd/24bd271ed51344f5979696a5551434f414f4141.jpg"  style="max-height: 100px" alt="">
+        </div>
+    </div>
   <div class="row">
 
       <div style="font-size: x-small;">1. PROXY: http://0.0.0.0:3000/myspecialproxy/:book_id</div>
@@ -87,10 +102,8 @@
       <ol>
         <li *ngFor="let cName of myCharacterNames">{{ cName }}</li>
       </ol>
-
-
 </div>
-</div>
+
 <div class="center">
     <hr />
     <div>(c) Some Times Accesses LibraryThing, & Beyond 2018</div>

@@ -32,13 +32,15 @@ https://www.w3schools.com/howto/howto_css_two_columns.asp
 
 .left {
     width: 70%;
-    /*background-color: lightgreen;*/
+    background-color: inherit;
 }
+/*background-color: lightgreen;*/
 
 .right {
     width: 30%;
-    /*background-color: gainsboro;*/
+    background-color: inherit;
 }
+/*background-color: gainsboro;*/
 
 .row:after {
     content: "";
